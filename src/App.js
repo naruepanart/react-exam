@@ -13,11 +13,8 @@ const Home = () => {
 
   const addTodo = id => dispatch({ type: "ADD_TODO", payload: id });
 
-  const onChange = event => {
-    setName(event.target.value);
-  };
-  const handleSubmit = event => {
-    event.preventDefault();
+  const handleSubmit = e => {
+    e.preventDefault();
 
     if (isEdit) {
       dispatch({ type: "EDIT_TODO", payload: id, name: name });
@@ -40,7 +37,7 @@ const Home = () => {
             <input
               type="text"
               value={name}
-              onChange={onChange}
+              onChange={e => setName(e.target.value)}
               placeholder="Enter name"
             />
           </label>
