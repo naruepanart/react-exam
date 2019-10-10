@@ -5,15 +5,7 @@ const initialState = {
   todos: [
     {
       id: uuid(),
-      title: "Mr.",
-      firstname: "aaaaaaaaaa",
-      lastname: "bbbbbbbbb",
-      birthday: "2001-05-01",
-      nationality: "Thai",
-      gender: "Male",
-      mobilephone: "+66",
-      inputmobilephone: "0812345678",
-      expectedsalary: "25000"
+      name: "AAAAAAAAAAAAA"
     }
   ]
 };
@@ -37,15 +29,7 @@ function reducer(state, action) {
         ...state,
         todos: state.todos.map(todo => {
           if (action.payload === todo.id) {
-            todo.title = action.title;
-            todo.firstname = action.firstname;
-            todo.lastname = action.lastname;
-            todo.birthday = action.birthday;
-            todo.nationality = action.nationality;
-            todo.gender = action.gender;
-            todo.mobilephone = action.mobilephone;
-            todo.inputmobilephone = action.inputmobilephone;
-            todo.expectedsalary = action.expectedsalary;
+            todo.name = action.name;
           }
           return todo;
         })
@@ -66,32 +50,13 @@ export const addTodoAction = todo => ({
   payload: todo
 });
 
-export const editTodoAction = (
-  todoId,
-  title,
-  firstname,
-  lastname,
-  birthday,
-  nationality,
-  gender,
-  mobilephone,
-  inputmobilephone,
-  expectedsalary,
-) => ({
+export const editTodoAction = (id, name) => ({
   type: "EDIT_TODO",
-  payload: todoId,
-  title: title,
-  firstname: firstname,
-  lastname: lastname,
-  birthday: birthday,
-  nationality: nationality,
-  gender: gender,
-  mobilephone: mobilephone,
-  inputmobilephone: inputmobilephone,
-  expectedsalary: expectedsalary,
+  payload: id,
+  name: name
 });
 
-export const deleteTodoAction = todoId => ({
+export const deleteTodoAction = id => ({
   type: "DELETE_TODO",
-  payload: todoId
+  payload: id
 });
