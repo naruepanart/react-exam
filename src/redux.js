@@ -45,7 +45,7 @@ function reducer(state, action) {
 }
 
 // Actions
-export const addTodoAction = id => ({
+/* export const addTodoAction = id => ({
   type: "ADD_TODO",
   payload: id
 });
@@ -59,4 +59,4 @@ export const editTodoAction = (id, name) => ({
 export const deleteTodoAction = id => ({
   type: "DELETE_TODO",
   payload: id
-});
+}); */
