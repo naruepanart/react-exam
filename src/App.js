@@ -5,6 +5,7 @@ import uuid from "uuid/v4";
 
 const Home = () => {
   const todos = useSelector(state => state.todos);
+  const count = useSelector(state => state.count);
   const [isEdit, setIsEdit] = useState(false);
   const [name, setName] = useState("");
   const [id, setId] = useState(uuid());
@@ -30,7 +31,7 @@ const Home = () => {
   return (
     <div>
       <div>
-        <h1 style={{ textAlign: "center" }}>Todo app</h1>
+        <h1 style={{ textAlign: "center" }}>Todo app {count}</h1>
         <form onSubmit={handleSubmit}>
           <label>
             Name :

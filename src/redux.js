@@ -7,7 +7,8 @@ const initialState = {
       id: uuid(),
       name: "AAAAAAAAAAAAA"
     }
-  ]
+  ],
+  count : 1000
 };
 
 export const store = createStore(
@@ -17,7 +18,7 @@ export const store = createStore(
 );
 
 // Reducer
-function reducer(state, action) {
+function reducer(state = initialState, action) {
   switch (action.type) {
     case "ADD_TODO":
       return {
