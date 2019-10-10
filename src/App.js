@@ -1,20 +1,17 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { editTodoAction, deleteTodoAction } from "./redux";
-import { addTodoAction } from "./redux";
+
 import uuid from "uuid/v4";
 
 const Home = () => {
   const todos = useSelector(state => state.todos);
   const [isEdit, setIsEdit] = useState(false);
   const [name, setName] = useState("");
-  const [id, setId] = useState(null);
+  const [id, setId] = useState(uuid());
 
   const dispatch = useDispatch();
 
-  const editTodo = (id, name) => dispatch(editTodoAction(id, name));
-  const deleteTodo = id => dispatch(deleteTodoAction(id));
-  const addTodo = name => dispatch(addTodoAction(name));
+  const addTodo = id => dispatch({ type: "ADD_TODO", payload: id });
 
   const onChange = event => {
     setName(event.target.value);
@@ -23,14 +20,13 @@ const Home = () => {
     event.preventDefault();
 
     if (isEdit) {
-      editTodo(id, name);
+      dispatch({ type: "EDIT_TODO", payload: id, name: name });
     } else {
       addTodo({
         id: uuid(),
         name: name
       });
     }
-
     setIsEdit(false);
     setName("");
   };
@@ -81,7 +77,13 @@ const Home = () => {
                     >
                       Edit
                     </button>
-                    <button onClick={() => deleteTodo(todo.id)}>Delete</button>
+                    <button
+                      onClick={() =>
+                        dispatch({ type: "DELETE_TODO", payload: todo.id })
+                      }
+                    >
+                      Delete
+                    </button>
                   </td>
                 </tr>
               </tbody>

@@ -45,9 +45,9 @@ function reducer(state, action) {
 }
 
 // Actions
-export const addTodoAction = todo => ({
+export const addTodoAction = id => ({
   type: "ADD_TODO",
-  payload: todo
+  payload: id
 });
 
 export const editTodoAction = (id, name) => ({
